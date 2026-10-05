@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pamoja Money-Go-Round</title>
+<style>
+  :root{
+    --p:#1f4e79; --fi:#b8437f; --c:#1f9e89; --m:#2e7d32; --ob:#6a3fa0; --enf:#8a2d2d; --tbd:#e39b2d;
+    --bg:#eef2f6; --card:#fff; --line:#c9d1da; --soft:#e3e8ee; --ink:#1d2630; --ink2:#3b4652; --mute:#6b7682;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);
+    font-family:"Segoe UI",Helvetica,Arial,sans-serif}
+  .app{height:100vh;display:grid;grid-template-columns:1fr 300px;grid-template-rows:auto 1fr;gap:8px 14px;padding:12px 16px}
+  header{grid-column:1/3;display:flex;align-items:baseline;gap:14px}
+  header h1{font-size:21px;margin:0}
+  header span{font-size:12.5px;color:var(--mute)}
+  header button{margin-left:auto;font:inherit;font-size:12px;color:var(--ink2);background:var(--card);border:1px solid var(--line);
+    border-radius:999px;padding:4px 12px;cursor:pointer}
+  header button:hover{border-color:var(--ink2);color:var(--ink)}
+  .stage{min-height:0;display:flex;border:2px solid var(--p);border-radius:14px;background:#fff;
+    box-shadow:0 2px 14px -6px rgba(31,78,121,.35);padding:6px}
+  .stage svg{flex:1;min-height:0;width:100%;height:100%;display:block}
+  aside{grid-column:2;grid-row:2;background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:16px 18px;overflow:hidden auto;font-size:13px;color:var(--ink2);display:flex;flex-direction:column}
+  aside h2{font-size:16px;margin:0 0 4px;color:var(--ink)}
+  aside .sub{color:var(--mute);font-size:12px;margin-bottom:10px}
+  aside h4{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin:14px 0 6px}
+  aside p{margin:0 0 6px;line-height:1.45}
+  aside ul{margin:0 0 6px;padding-left:18px;line-height:1.45}
+  .open{border-left:3px solid var(--tbd);padding-left:8px;font-size:12.5px}
+  .who{display:flex;gap:6px 10px;flex-wrap:wrap;margin-bottom:8px}
+  .who span{font-size:12px;display:flex;align-items:center;gap:5px}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+  .key{display:grid;grid-template-columns:44px 1fr;gap:6px 8px;align-items:center;font-size:12px}
+  .hint{margin-top:auto;padding-top:10px;font-size:11.5px;color:var(--mute)}
+  .acct{display:grid;grid-template-columns:auto 1fr;gap:4px 8px;font-size:12px;align-items:baseline}
+  .acct b{font-weight:700}
+  /* diagram */
+  .step{cursor:pointer;transition:opacity .15s}
+  .step .card{fill:var(--card);stroke:#b4bfcb;stroke-width:1.2;filter:drop-shadow(0 1.5px 2.5px rgba(30,50,70,.16))}
+  .step:hover .card,.step:focus-visible .card{stroke:var(--ink2);stroke-width:1.8;outline:none}
+  .step:focus{outline:none}
+  .step.sel .card{stroke:var(--ink);stroke-width:2.8;filter:drop-shadow(0 5px 10px rgba(30,50,70,.38))}
+  svg.pin .step:not(.sel){opacity:.35}
+  svg.pin .flow{opacity:.35}
+  .t{fill:var(--ink);font-size:16px;font-weight:700}
+  .f{fill:var(--ink2);font-size:13px}
+  .fs{fill:var(--mute);font-size:12px}
+  .numc{fill:#2f3a45}.numt{fill:#fff;font-size:11px;font-weight:700;text-anchor:middle}
+  .money{fill:#e8f4ea;stroke:var(--m)}
+  .moneyt{fill:var(--m);font-size:10px;font-weight:700;text-anchor:middle}
+  .proc{stroke:#5b6570;stroke-width:2;fill:none}
+  .lane-h{font-size:14px;font-weight:700}
+  /* glossary pop-up */
+  .modal{position:fixed;inset:0;background:rgba(29,38,48,.35);display:none;place-items:center;z-index:10}
+  .modal.show{display:grid}
+  .mbox{background:var(--card);border-radius:12px;border-top:4px solid var(--p);box-shadow:0 12px 40px -10px rgba(0,0,0,.4);
+    width:min(600px,92vw);max-height:86vh;overflow:auto;padding:16px 20px 18px;font-size:13px;color:var(--ink2);position:relative}
+  .mbox h2{font-size:16px;margin:0 0 10px;color:var(--ink)}
+  .mbox .x{position:absolute;top:8px;right:10px;font:inherit;font-size:20px;line-height:1;border:0;background:none;color:var(--mute);cursor:pointer}
+  .rep{display:grid;grid-template-columns:150px 1fr;margin:0;border-top:1px solid var(--soft)}
+  .rep dt,.rep dd{margin:0;padding:6px 0;border-bottom:1px solid var(--soft);line-height:1.4}
+  .rep dt{font-weight:700;color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Pamoja Money-Go-Round</h1>
+    <span>PAMOJA Sub-Component 1.2 · how the money moves, and comes back round · v1 (draft) · click any step</span>
+    <button id="glossBtn">Glossary</button>
+  </header>
+  <div class="stage"><svg id="dg" viewBox="0 0 1100 690" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Fund flows between PMO-RALG, the FIs and the CMGs"></svg></div>
+  <aside id="panel"></aside>
+  <div class="modal" id="modal"><div class="mbox" role="dialog" aria-modal="true" aria-labelledby="gh">
+    <button class="x" id="closeG" aria-label="Close">×</button>
+    <h2 id="gh">Glossary</h2>
+    <dl class="rep" id="gloss"></dl>
+  </div></div>
+</div>
+
+<script>
+const COL={P:'#1f4e79',F:'#b8437f',C:'#1f9e89'};
+const NAME={P:'PMO-RALG',F:'FI',C:'CMG'};
+const RED='#8a2d2d';
+
+/* Lanes: each card sits in the lane of the party the money leaves. */
+const LANES=[
+ {k:'P',x:8,  w:352,h:'PMO-RALG',s:'Disbursal account'},
+ {k:'F',x:374,w:352,h:'FIs',s:'Disbursal and collection accounts'},
+ {k:'C',x:740,w:352,h:'CMGs',s:'Group bank account'}];
+
+const STEPS=[
+ {n:'1',x:84, y:60, t:['Fund the FI'],owners:['P'],money:['PMO-RALG','FI'],note:'From the disbursal account',mk:['◆','Master financing agreement'],
+  what:'PMO-RALG transfers program funds from its disbursal account directly to the participating FI, under the master financing agreement. The FI then on-lends directly to CMGs.',
+  open:['One transfer per round, or instalments?','Which FI account receives the funds (a ring-fenced disbursal account)?']},
+ {n:'2',x:450,y:60, t:['Lend'],owners:['F'],money:['FI','CMG'],note:'Max 2 loan cycles per CMG',mk:['◆','FI–CMG loan contract'],
+  what:'The FI lends directly to each CMG under its own loan contract, from the program funds. <b>A CMG can take at most two loan cycles</b> from the program.',
+  open:['Does the second cycle depend on full, on-time repayment of the first? (a repayment incentive for the CMG)','What happens to a CMG after its second cycle: move to the FI’s own products?']},
+ {n:'3',x:816,y:60, t:['Repay'],owners:['C'],money:['CMG','FI'],note:'Principal + interest',mk:['◆','On schedule'],
+  what:'The CMG repays principal and interest on schedule into the FI’s collection account, in the FI’s own system.'},
+ {n:'4',x:450,y:280,t:['Pay back'],owners:['F'],money:['FI','PMO-RALG'],note:'Principal + interest',mk:['◆','To PMO-RALG’s account'],
+  what:'The FI pays the principal and interest it collects, including amounts it recovers (step 6), back into PMO-RALG’s disbursal account.',
+  open:['How often does the FI pay back (monthly, quarterly)?','How is the FI paid for its work: an interest share kept before paying back, or a fee?']},
+ {n:'5',x:84, y:280,t:['Recycle'],owners:['P'],money:['PMO-RALG','FI'],note:'Same FI, or another FI',mk:['↻','Different region or district'],
+  what:'PMO-RALG lends the returned funds again from its disbursal account: to the <b>same FI</b>, or to <b>another participating FI</b> that serves a different region or district. Each round starts again at step 1.',
+  open:['Rules for choosing where recycled funds go: FI performance, unmet demand, regional balance?']},
+ {n:'6',x:816,y:500,t:['Recovery'],owners:['F'],money:['CMG','FI'],note:'FI’s own rules, no coercion',mk:['⚖','If a CMG does not repay'],red:1,
+  what:'If a CMG does not repay on time, the FI leads recovery under its own rules, with no coercive means. It may restructure the loan. Amounts recovered go into the collection account and are paid back to PMO-RALG (step 4).',
+  open:['A definition of default, and when collection becomes recovery.','Recovery incentives for the FI (beyond its own loss share).']},
+ {n:'7',x:450,y:500,t:['Write-down'],owners:['F'],note:'At pre-agreed days past due',mk:['◆','At an agreed periodicity'],red:1,
+  what:'When a loan reaches the <b>pre-agreed number of days past due</b>, the FI writes it down in its books. Write-downs are booked at an <b>agreed periodicity</b> (for example, quarterly) and reported to PMO-RALG.',
+  open:['The days-past-due threshold (for example, 90 or 180 days).','The periodicity of write-downs and loss-share claims.']},
+ {n:'8',x:84, y:500,t:['Loss share'],owners:['P'],money:['PMO-RALG','FI'],note:'Based on the FI’s write-downs',mk:['⚖','By an agreed split'],red:1,
+  what:'Based on the FI’s write-downs, PMO-RALG pays its agreed share of the loss to the FI. The FI carries the rest, which gives it a reason to recover.',
+  open:['The split (FI 70 : PMO-RALG 30 proposed).','Paid in cash, or set off against what the FI pays back (step 4)?','If a written-down loan is later recovered, does PMO-RALG get its share back?']}
+];
+
+const svg=document.getElementById('dg');
+const mark=(id,fill)=>`<marker id="${id}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="${fill}"/></marker>`;
+const W=192,H=160;
+const card=s=>{
+  const {x,y}=s;
+  let g=`<g class="step" data-n="${s.n}" tabindex="0" role="button" aria-label="Step ${s.n}: ${s.t.join(' ')}"><rect class="card" x="${x}" y="${y}" width="${W}" height="${H}" rx="10"${s.red?` style="stroke:${RED};stroke-opacity:.55"`:''}/>`;
+  const cx=x+22;
+  g+=`<circle class="numc" cx="${cx}" cy="${y+24}" r="13"${s.red?` style="fill:${RED}"`:''}/><text class="numt" x="${cx}" y="${y+28}">${s.n}</text>`;
+  s.t.forEach((l,i)=>g+=`<text class="t" x="${cx+22}" y="${y+30+i*24}">${l}</text>`);
+  s.owners.forEach((o,i)=>g+=`<circle cx="${x+W-18-i*18}" cy="${y+22}" r="7" fill="${COL[o]}"/>`);
+  g+=`<line x1="${x+12}" y1="${y+52}" x2="${x+W-12}" y2="${y+52}" stroke="#e3e8ee"/>`;
+  let ry=y+80, lx=x+14;
+  if(s.money){g+=`<rect class="money" x="${lx}" y="${ry-13}" width="36" height="18" rx="9"/><text class="moneyt" x="${lx+18}" y="${ry}">TZS</text><text class="f" x="${lx+44}" y="${ry}" font-size="12">${s.money.join(' → ')}</text>`;ry+=26;}
+  else ry+=0;
+  g+=`<text class="f" x="${lx}" y="${ry}" font-size="12.5">${s.note}</text>`;ry+=26;
+  const mc=s.mk[0]=='⚖'?RED:s.mk[0]=='↻'?COL.P:'#6a3fa0';
+  g+=`<text x="${lx}" y="${ry}" font-size="14" fill="${mc}">${s.mk[0]}</text><text class="f" x="${lx+18}" y="${ry}" font-size="12">${s.mk[1]}</text>`;
+  return g+'</g>';
+};
+const arrow=(d,col,dash)=>`<path d="${d}" stroke="${col}" stroke-width="${dash?2.2:2}" ${dash?`stroke-dasharray="${dash}"`:''} fill="none" marker-end="url(#${col===RED?'ahE':col===COL.P?'ahP':col==='#2e7d32'?'ahM':'ah'})"/>`;
+const lbl=(x,y,txt,col,anchor,weight)=>`<text x="${x}" y="${y}" font-size="12" ${weight?'font-weight="600"':''} fill="${col||'#3b4652'}" text-anchor="${anchor||'middle'}">${txt}</text>`;
+
+let out=`<defs>${mark('ah','#5b6570')}${mark('ahE',RED)}${mark('ahP',COL.P)}${mark('ahM','#2e7d32')}</defs>`;
+/* lanes */
+LANES.forEach(l=>{
+  out+=`<rect x="${l.x}" y="4" width="${l.w}" height="682" rx="12" fill="${COL[l.k]}" fill-opacity=".05" stroke="${COL[l.k]}" stroke-opacity=".25"/>
+   <rect x="${l.x}" y="4" width="${l.w}" height="38" rx="12" fill="${COL[l.k]}" fill-opacity=".12"/>
+   <circle cx="${l.x+20}" cy="23" r="6" fill="${COL[l.k]}"/>
+   <text class="lane-h" x="${l.x+34}" y="28" fill="${COL[l.k]}">${l.h}</text>
+   <text class="fs" x="${l.x+l.w-14}" y="28" text-anchor="end">${l.s}</text>`;
+});
+/* other FIs: ghost cards behind Lend, for recycling to another FI */
+out+=`<rect x="462" y="52" width="${W}" height="${H}" rx="10" fill="#fff" stroke="${COL.F}" stroke-opacity=".35" stroke-dasharray="5 4"/>
+      <rect x="456" y="56" width="${W}" height="${H}" rx="10" fill="#fff" stroke="${COL.F}" stroke-opacity=".5" stroke-dasharray="5 4"/>`;
+/* flows */
+out+=`<g class="flow">
+ ${arrow('M276 140H446','#5b6570')}${lbl(361,132,'program funds')}
+ ${arrow('M648 140H812','#5b6570')}${lbl(730,132,'loan')}
+ ${lbl(730,164,'≤ 2 cycles per CMG','#b8437f','middle',1)}
+ ${arrow('M880 220V360H648','#5b6570')}${lbl(888,292,'principal + interest','#3b4652','start')}${lbl(888,308,'to collection account','#6b7682','start')}
+ ${arrow('M450 360H280','#5b6570')}${lbl(365,352,'principal + interest')}${lbl(365,382,'to disbursal account','#6b7682')}
+ ${arrow('M180 280V224',COL.P,'7 5')}
+ ${lbl(72,256,'↻ recycle','#1f4e79','end',1)}
+ <path d="M240 280V252H552V224" stroke="${COL.P}" stroke-width="2.2" stroke-dasharray="7 5" fill="none" marker-end="url(#ahP)"/>
+ ${lbl(396,244,'↻ or to another FI · different region or district',COL.P,'middle',1)}
+ ${arrow('M1000 220V496',RED,'6 5')}${lbl(1006,360,'not repaid','#8a2d2d','start',1)}
+ ${arrow('M840 500V420H648','#2e7d32','6 4')}${lbl(729,412,'amounts recovered','#2e7d32','middle',1)}
+ ${arrow('M816 580H646',RED,'6 5')}${lbl(731,572,'still unpaid at','#8a2d2d','middle',1)}${lbl(731,602,'agreed days past due','#8a2d2d','middle',1)}
+ ${arrow('M450 580H280',RED,'6 5')}${lbl(365,572,'loss share claim','#8a2d2d','middle',1)}${lbl(365,602,'at agreed periodicity','#8a2d2d','middle',1)}
+ ${lbl(180,678,'PMO-RALG pays its share to the FI','#6b7682')}
+</g>`;
+out+=STEPS.map(card).join('');
+svg.innerHTML=out;
+
+/* ---------- panel ---------- */
+const panel=document.getElementById('panel');
+const who=arr=>`<div class="who">${arr.map(o=>`<span><i class="dot" style="background:${COL[o]}"></i>${NAME[o]}</span>`).join('')}</div>`;
+function legend(){
+  panel.innerHTML=`<h2>How to read this</h2><div class="sub">Money only: who pays whom, and how it comes back round.</div>
+  <p>Each card sits in the lane of the party the money <b>leaves</b>.</p>
+  <p><b>Main round (1–5):</b> PMO-RALG funds the FI, the FI lends to CMGs, CMGs repay the FI, the FI pays back PMO-RALG, and PMO-RALG recycles the funds.</p>
+  <p><b>Recovery (6–8):</b> if a CMG does not repay, the FI recovers, writes down what it cannot recover, and PMO-RALG pays its loss share.</p>
+  <h4>Key</h4><div class="key">
+   <svg width="40" height="16"><circle cx="10" cy="8" r="6" fill="${COL.P}"/><circle cx="26" cy="8" r="6" fill="${COL.F}"/></svg><span>Badge: who carries out the step</span>
+   <svg width="40" height="18"><rect x="1" y="1" width="36" height="16" rx="8" fill="#e8f4ea" stroke="#2e7d32"/><text x="19" y="13" font-size="9.5" font-weight="700" fill="#2e7d32" text-anchor="middle">TZS</text></svg><span>Money moves (from → to)</span>
+   <svg width="40" height="10"><path d="M2 5H34" stroke="${COL.P}" stroke-width="2" stroke-dasharray="5 4"/></svg><span>↻ Recycled funds</span>
+   <svg width="40" height="10"><path d="M2 5H34" stroke="${RED}" stroke-width="2" stroke-dasharray="5 4"/></svg><span>Recovery path</span>
+   <svg width="40" height="10"><path d="M2 5H34" stroke="#2e7d32" stroke-width="2" stroke-dasharray="5 4"/></svg><span>Amounts recovered</span>
+   <span style="color:#6a3fa0;font-size:15px;text-align:center">◆</span><span>Terms that apply</span>
+   <span style="color:${RED};font-size:15px;text-align:center">⚖</span><span>Enforcement or loss</span>
+  </div>
+  <h4>Oversight</h4><p>The FI reports and reconciles its disbursal and collection accounts with PMO-RALG, so PMO-RALG can track the program funds as the scheme scales.</p>
+  <div class="hint">Click a step for detail. Esc returns here.</div>`;
+}
+function showStep(s){
+  panel.innerHTML=`<h2>${s.n} · ${s.t.join(' ')}</h2><div class="sub">${s.red?'Recovery path':'Main round'}</div>${who(s.owners)}
+   <p>${s.what}</p>
+   ${s.money?`<h4>Money</h4><p>TZS: ${s.money.join(' → ')}</p>`:''}
+   ${s.open?`<h4>Still to settle</h4>${s.open.map(o=>`<p class="open">${o}</p>`).join('')}`:''}
+   <div class="hint">Esc or click the step again to return.</div>`;
+}
+const steps=[...svg.querySelectorAll('.step')];
+let pinned=null;
+function select(n){
+  pinned=(pinned===n)?null:n;
+  steps.forEach(g=>g.classList.toggle('sel',g.dataset.n===pinned));
+  svg.classList.toggle('pin',!!pinned);
+  pinned?showStep(STEPS.find(s=>s.n===pinned)):legend();
+}
+steps.forEach(g=>{
+  g.addEventListener('click',()=>select(g.dataset.n));
+  g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(g.dataset.n);}});
+});
+
+/* ---------- glossary ---------- */
+const GLOSS=[
+ ['PMO-RALG','Prime Minister’s Office – Regional Administration and Local Government'],
+ ['PAMOJA','The program that funds this scheme; Sub-Component 1.2 covers lending to CMGs'],
+ ['FI','Financial institution: the partner bank that lends to CMGs'],
+ ['CMG','Community Microfinance Group'],
+ ['TZS','Tanzanian shilling'],
+ ['Disbursal account','PMO-RALG: the account that funds FIs and receives their pay-backs. FI: the account that receives program funds and pays out loans'],
+ ['Collection account','The FI account that receives CMG repayments and recoveries'],
+ ['Master financing agreement','Agreement between PMO-RALG and each FI: financing terms, reporting, oversight, and the conditions for lending to CMGs'],
+ ['Loan contract','Contract between the FI and a CMG'],
+ ['Loan cycle','One loan to a CMG and its full repayment. A CMG can have at most two'],
+ ['Principal','The amount lent'],
+ ['Interest','The charge for borrowing, paid on top of principal'],
+ ['Recycle (revolving)','Lending returned money out again, to the same FI or to another FI'],
+ ['Recovery','The FI’s steps to collect an overdue loan'],
+ ['Days past due (DPD)','How many days a payment is late'],
+ ['Write-down','Reducing a loan’s value in the FI’s books when it is unlikely to be repaid'],
+ ['Periodicity','How often something is done (for example, quarterly)'],
+ ['Loss share','The agreed split of an unrecovered loss between the FI and PMO-RALG'],
+ ['Set-off','Netting one amount owed against another, instead of two payments'],
+ ['Reconciliation','Checking that account balances match the reported flows']];
+document.getElementById('gloss').innerHTML=GLOSS.map(([t,d])=>`<dt>${t}</dt><dd>${d}</dd>`).join('');
+const modal=document.getElementById('modal');
+document.getElementById('glossBtn').onclick=()=>modal.classList.add('show');
+document.getElementById('closeG').onclick=()=>modal.classList.remove('show');
+modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('show');});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(modal.classList.contains('show'))modal.classList.remove('show');else if(pinned)select(pinned);}});
+legend();
+</script>
+</body>
+</html>
