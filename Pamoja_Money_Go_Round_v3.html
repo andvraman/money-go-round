@@ -218,12 +218,14 @@ document.getElementById('s2').innerHTML=defs('b')+cols()+`
 
 /* Flow 3 */
 document.getElementById('s3').innerHTML=defs('c')+cols()+`
- ${acct(X.P,100,250,'G','Grant pool','Rewards only · not lent')}
- <text class="sm" x="${X.P+14}" y="312">First 2 years, or until</text><text class="sm" x="${X.P+14}" y="328">the pool runs out</text>
+ ${acct(X.P,100,320,'G','Grant pool','Rewards only · not lent')}
+ <text class="sm" x="${X.P+14}" y="392">First 2 years, or until</text><text class="sm" x="${X.P+14}" y="408">the pool runs out</text>
  ${acct(X.F,120,64,'F','Own account','Receives FI rewards')}
- ${acct(X.C,268,64,'C','Group bank account','Receives CMG rewards')}
- ${arr(R+2,FL-2,152,'M',1,'Reward the FI',['for recovery and','quick recycling'])}
- ${arr(R+2,CL-2,300,'M',2,'Reward the CMG',['for on-time repayment','+ using the CMG app'])}`;
+ <text class="lab M" x="${X.F}" y="214">FI rewarded for:</text>
+ ${['• share of disbursements made','  within agreed turnaround times','• timely repayments','• accurate reporting','• fair recovery practices'].map((t,i)=>`<text class="sm" x="${X.F}" y="${236+i*17}" xml:space="preserve">${t}</text>`).join('')}
+ ${acct(X.C,348,64,'C','Group bank account','Receives CMG rewards')}
+ ${arr(R+2,FL-2,152,'M',1,'Reward the FI')}
+ ${arr(R+2,CL-2,380,'M',2,'Reward the CMG',['for on-time repayment','+ using the CMG app'])}`;
 
 /* tabs and jumps */
 const tabs=[...document.querySelectorAll('.tab')];
