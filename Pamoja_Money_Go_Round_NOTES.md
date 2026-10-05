@@ -1,11 +1,21 @@
 # Pamoja Money-Go-Round — working notes
 
-- **Current version:** `Pamoja_Money_Go_Round_v2.html` (draft, 5 Oct 2026)
-- **Earlier versions:** `archive/` (v1)
+- **Current version:** `Pamoja_Money_Go_Round_v3.html` (draft, 5 Oct 2026) · published at https://claude.ai/artifact/Kq183eTsVtFigqWZH89jRi
+- **Earlier versions:** `archive/` (v1, v2)
 - **Project:** PAMOJA Sub-Component 1.2 — capital for Community Microfinance Groups (CMGs) through FIs
 - **Built from:** the "Funds Flow Process" note (5 Oct 2026) and the look of `CMG_Financing_Lifecycle_v9.html` in the `Pamoja-loan-flowchart` repo.
 
-## What it shows
+## v3: three simple flows (5 Oct 2026)
+
+v2 was too detailed for the client. v3 splits it into three tabbed flows with clickable jumps between them. Arrows run account to account. Each flow has three party columns (PMO-RALG · FI · CMG).
+
+- **Flow 1 · Money goes round:** PMO-RALG disbursal account → FI disbursal account (1 Fund) → CMG group bank account (2 Lend; max 2 loans, 2nd only if 1st repaid) → FI collection account (3 Repay) → PMO-RALG disbursal account (4 Pay back) → ↻ 5 Recycle to the same or another FI. FI's interest share: PMO-RALG disbursal account → FI own account. Jump: "Not repaid? → Flow 2".
+- **Flow 2 · When a CMG doesn't repay:** 1 Recovery (CMG → FI collection account; recovered money jumps to Flow 1 step 4) → 2 Write-down in the FI's books at agreed days past due (recovery stops) → 3 Loss share (PMO-RALG disbursal account → FI own account), claimed at an agreed periodicity.
+- **Flow 3 · Rewards:** PMO-RALG grant pool → FI own account (recovery and quick recycling) and → CMG group bank account (on-time repayment + using the CMG app). First 2 years or until the pool runs out.
+- Details, still-to-settle points and the glossary sit behind one "Notes and glossary" button.
+- New in v3: an FI "own account" (income: interest share, loss share, rewards). Which accounts pay and receive loss share and rewards is still to confirm.
+
+## What v2 showed
 
 Money flows only, between PMO-RALG, the FIs and the CMGs. One page, no scrolling at 1280×720. Click a step for detail; Esc returns to the key.
 
@@ -51,6 +61,7 @@ Three lanes (PMO-RALG · FIs · CMGs). Each card sits in the lane of the party t
 - What the FI incentive rewards (shown as recovery and quick recycling, from the funds-flow note; to confirm).
 - Days-past-due threshold; write-down periodicity.
 - Loss split (FI 70 : PMO-RALG 30 proposed).
+- Which accounts pay and receive loss share and rewards.
 
 ## Glossary
 
@@ -73,5 +84,7 @@ Three lanes (PMO-RALG · FIs · CMGs). Each card sits in the lane of the party t
 | Interest share | Agreed split of interest between the FI (majority) and PMO-RALG |
 | Grant pool | Money set aside for incentives; not lent, does not come back |
 | Incentive | A payment that rewards an FI or CMG for good results |
+| Own account | FI account for its own income: interest share, loss share and rewards |
+| CMG app | The app CMGs use to manage their group and loan records |
 | Set-off | Netting one amount owed against another |
 | Reconciliation | Checking that balances match reported flows |
