@@ -1,6 +1,7 @@
 # Pamoja Money-Go-Round — working notes
 
-- **Current version:** `Pamoja_Money_Go_Round_v1.html` (draft, 5 Oct 2026)
+- **Current version:** `Pamoja_Money_Go_Round_v2.html` (draft, 5 Oct 2026)
+- **Earlier versions:** `archive/` (v1)
 - **Project:** PAMOJA Sub-Component 1.2 — capital for Community Microfinance Groups (CMGs) through FIs
 - **Built from:** the "Funds Flow Process" note (5 Oct 2026) and the look of `CMG_Financing_Lifecycle_v9.html` in the `Pamoja-loan-flowchart` repo.
 
@@ -12,15 +13,17 @@ Three lanes (PMO-RALG · FIs · CMGs). Each card sits in the lane of the party t
 
 **Main round (1–5)**
 1. Fund the FI: PMO-RALG disbursal account → FI
-2. Lend: FI → CMG (maximum two loan cycles per CMG)
+2. Lend: FI → CMG (maximum two loan cycles per CMG; the second depends on full, on-time repayment of the first)
 3. Repay: CMG → FI collection account (principal + interest)
-4. Pay back: FI → PMO-RALG disbursal account (principal + interest, including recoveries)
-5. Recycle: PMO-RALG → the same FI, or another FI serving a different region or district
+4. Pay back: FI → PMO-RALG disbursal account (principal + interest, including recoveries). PMO-RALG returns the FI's agreed (majority) interest share at regular intervals. *Alternative:* each quarter (or agreed period) the FI pays only principal + PMO-RALG's interest share.
+5. Recycle: PMO-RALG → the same FI, or another FI serving a different region or district. This is the only way an FI gets fresh capital.
 
 **Recovery (6–8)**
 6. Recovery: the FI recovers from the CMG; amounts recovered go to step 4
-7. Write-down: at pre-agreed days past due, booked at an agreed periodicity
+7. Write-down: at pre-agreed days past due, booked at an agreed periodicity. After a write-down the FI may not pursue recovery; the agreement can set penalties or suspension for confirmed cases.
 8. Loss share: PMO-RALG pays its share to the FI, based on the write-downs
+
+**Incentives (9)**: PMO-RALG pays FIs and CMGs from a grant pool, for the first two years or until the pool runs out, whichever is earlier. Shown as a banner across all three lanes.
 
 ## Decisions (agreed with Anand, 5 Oct 2026)
 
@@ -29,15 +32,25 @@ Three lanes (PMO-RALG · FIs · CMGs). Each card sits in the lane of the party t
 - "If not repaid" is called **Recovery**.
 - Maximum two loan cycles per CMG.
 
+## Decisions (v2, Anand, 5 Oct 2026)
+
+- FI gets back its agreed (majority) interest share at regular intervals; fresh capital only through recycling. Alternative kept in the side panel of step 4.
+- Loss-share treatment (cash payment by PMO-RALG, based on write-downs) agreed.
+- No recovery after write-down; penalties or suspension for confirmed cases.
+- Second loan cycle depends on repaying the first.
+- Incentives from a grant pool, first two years or until it runs out.
+
 ## Still to settle (shown in the side panel)
 
 - One transfer or instalments; which FI account receives funds.
-- Whether cycle 2 depends on repaying cycle 1; what happens after cycle 2.
-- Pay-back frequency; how the FI is paid (interest share or fee).
+- What happens to a CMG after cycle 2.
+- The exact interest split; pay-back frequency.
 - Rules for choosing where recycled funds go.
-- Definition of default; FI recovery incentives.
+- Definition of default.
+- What earns an incentive, and how much; the size of the grant pool.
+- What the FI incentive rewards (shown as recovery and quick recycling, from the funds-flow note; to confirm).
 - Days-past-due threshold; write-down periodicity.
-- Loss split (FI 70 : PMO-RALG 30 proposed); cash or set-off; treatment of later recoveries.
+- Loss split (FI 70 : PMO-RALG 30 proposed).
 
 ## Glossary
 
@@ -57,5 +70,8 @@ Three lanes (PMO-RALG · FIs · CMGs). Each card sits in the lane of the party t
 | Write-down | Reducing a loan's value in the FI's books |
 | Periodicity | How often something is done |
 | Loss share | The agreed split of an unrecovered loss |
+| Interest share | Agreed split of interest between the FI (majority) and PMO-RALG |
+| Grant pool | Money set aside for incentives; not lent, does not come back |
+| Incentive | A payment that rewards an FI or CMG for good results |
 | Set-off | Netting one amount owed against another |
 | Reconciliation | Checking that balances match reported flows |
