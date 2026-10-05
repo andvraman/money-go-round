@@ -107,7 +107,7 @@
 
   <section class="flow" id="f2" role="tabpanel" aria-labelledby="tab2" hidden>
     <h2>2 · When a CMG fails to repay</h2>
-    <p class="lead">The FI tries to recover. If the loan is still unpaid at the agreed days past due, the FI writes it down and stops recovery. PMO-RALG then pays its share of the loss.</p>
+    <p class="lead">The FI tries to recover. If the loan is still unpaid or only partially repaid at the agreed days past due, the FI writes it down and stops recovery. PMO-RALG then pays its share of the loss.</p>
     <div class="scroll"><svg id="s2" viewBox="0 0 1000 450" role="img" aria-label="Flow 2: when a CMG does not repay"></svg></div>
     <div class="jumps"><button class="jump" data-go="1">← Back to flow 1</button><button class="jump j3" data-go="3">Rewards: see flow 3 →</button></div>
   </section>
@@ -211,7 +211,7 @@ document.getElementById('s2').innerHTML=defs('b')+cols()+`
  ${chip(X.P,78,BW,'k',1,'FI Repays: Flow 1, step 4')}
  ${line('M500 126V212','R',1)}
  ${num(500,169,2,'R')}
- <text class="lab R" x="520" y="160">Still unpaid at the agreed</text><text class="lab R" x="520" y="178">days past due</text>
+ <text class="lab R" x="520" y="152">Unpaid or partially repaid</text><text class="lab R" x="520" y="170">at the agreed</text><text class="lab R" x="520" y="188">days past due</text>
  ${line(`M${FL} 246H140V324`,'R',1)}
  <text class="sm" x="150" y="270">Loss share claimed,</text><text class="sm" x="150" y="286">at an agreed periodicity</text>
  ${arr(R+2,FL-2,358,'R',3,'Loss share','PMO-RALG’s share')}
