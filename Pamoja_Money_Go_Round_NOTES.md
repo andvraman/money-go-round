@@ -9,7 +9,7 @@
 
 v2 was too detailed for the client. v3 splits it into three tabbed flows with clickable jumps between them. Arrows run account to account. Each flow has three party columns (PMO-RALG · FI · CMG).
 
-- **Flow 1 · Money goes round:** PMO-RALG disbursal account → FI disbursal account (1 Fund) → CMG group bank account (2 Lend; max 2 loans, 2nd only if 1st repaid) → FI collection account (3 Repay) → PMO-RALG disbursal account (4 Pay back) → ↻ 5 Recycle to the same or another FI. FI's interest share: PMO-RALG disbursal account → FI own account. Jump: "Not repaid? → Flow 2".
+- **Flow 1 · Money goes round:** PMO-RALG disbursal account → FI disbursal account (1 Fund) → CMG group bank account (2 Lend; max 2 loans, 2nd only if 1st repaid) → FI collection account (3 Repay) → PMO-RALG collection account (4 Pay back) → ↻ 5 Recycle to the PMO-RALG disbursal account, then to the same or another FI. FI's interest share: PMO-RALG collection account → FI own account. Jump: "Not repaid? → Flow 2".
 - **Flow 2 · When a CMG doesn't repay:** 1 Recovery (CMG → FI collection account; recovered money jumps to Flow 1 step 4) → 2 Write-down in the FI's books at agreed days past due (recovery stops) → 3 Loss share (PMO-RALG disbursal account → FI own account), claimed at an agreed periodicity.
 - **Flow 3 · Rewards:** PMO-RALG grant pool → FI own account (recovery and quick recycling) and → CMG group bank account (on-time repayment + using the CMG app). First 2 years or until the pool runs out.
 - Details, still-to-settle points and the glossary sit behind one "Notes and glossary" button.
