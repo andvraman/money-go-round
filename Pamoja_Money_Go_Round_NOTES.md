@@ -9,7 +9,7 @@
 
 v2 was too detailed for the client. v3 splits it into three tabbed flows with clickable jumps between them. Arrows run account to account. Each flow has three party columns (PMO-RALG · FI · CMG).
 
-- **Flow 1 · Money goes round:** PMO-RALG disbursal account → FI disbursal account (1 Fund) → CMG group bank account (2 Lend; max 2 loans, 2nd only if 1st repaid) → FI collection account (3 Repay) → PMO-RALG collection account (4 Pay back) → ↻ 5 Recycle to the PMO-RALG disbursal account, then to the same or another FI. FI's interest share: PMO-RALG collection account → FI own account. Jump: "Not repaid? → Flow 2".
+- **Flow 1 · Money goes round:** PMO-RALG disbursal account → FI disbursal account (1 Fund) → CMG group bank account (2 Lend; max 2 loans, 2nd only if 1st repaid) → FI collection account (3 Repay) → PMO-RALG collection account (4 Pay back) → ↻ 5 Recycle to the PMO-RALG disbursal account, then to the same or another FI. FI's interest share: PMO-RALG collection account → FI own account. Jump: "Not repaid? → Flow 2". CMGs may withdraw in cash and repay in cash into the FI's collection account at its bank, with an FI reference number (review comment, 5 Oct 2026).
 - **Flow 2 · When a CMG doesn't repay:** 1 Recovery (CMG → FI collection account; recovered money jumps to Flow 1 step 4) → 2 Write-down in the FI's books at agreed days past due (recovery stops) → 3 Loss share (PMO-RALG disbursal account → FI own account), claimed at an agreed periodicity.
 - **Flow 3 · Rewards:** PMO-RALG grant pool → FI own account (recovery and quick recycling) and → CMG group bank account (on-time repayment + using the CMG app). First 2 years or until the pool runs out.
 - Details, still-to-settle points and the glossary sit behind one "Notes and glossary" button.
@@ -62,6 +62,7 @@ Three lanes (PMO-RALG · FIs · CMGs). Each card sits in the lane of the party t
 - Days-past-due threshold; write-down periodicity.
 - Loss split (FI 70 : PMO-RALG 30 proposed).
 - Which accounts pay and receive loss share and rewards.
+- Cash repayments via Wakala: allowed? who bears fees? can the Wakala record the FI account and reference number?
 
 ## Glossary
 
@@ -86,5 +87,7 @@ Three lanes (PMO-RALG · FIs · CMGs). Each card sits in the lane of the party t
 | Incentive | A payment that rewards an FI or CMG for good results |
 | Own account | FI account for its own income: interest share, loss share and rewards |
 | CMG app | The app CMGs use to manage their group and loan records |
+| Reference number | FI-issued number that matches a cash repayment to the right CMG loan |
+| Wakala | Agent who takes cash deposits and payments for a bank or mobile money service |
 | Set-off | Netting one amount owed against another |
 | Reconciliation | Checking that balances match reported flows |

@@ -126,6 +126,7 @@
   <h4>Agreed</h4>
   <ul>
     <li>A CMG can have at most 2 loans; the 2nd only if the 1st is repaid in full and on time.</li>
+    <li>CMGs may withdraw loan funds in cash, and may repay in cash into the FI’s collection account at its bank, quoting an FI-issued reference number.</li>
     <li>The FI pays back principal and interest into PMO-RALG’s collection account. PMO-RALG returns the FI’s majority share of the interest at regular intervals.</li>
     <li>The FI gets fresh capital only when PMO-RALG recycles funds to it.</li>
     <li>After a write-down the FI may not pursue recovery. The agreement can set penalties or suspension for confirmed cases.</li>
@@ -141,6 +142,7 @@
     <li>Which accounts pay and receive loss share and rewards (shown here as PMO-RALG’s disbursal account or grant pool, and the FI’s own account).</li>
     <li>What earns a reward, how much, and the size of the grant pool.</li>
     <li>What happens to a CMG after its 2nd loan.</li>
+    <li>Cash repayments: can CMGs repay through a Wakala? Who bears any fees? Can the Wakala record the FI account and the reference number?</li>
   </ul>
   <h4>Glossary</h4>
   <dl id="gloss"></dl>
@@ -178,10 +180,11 @@ document.getElementById('s1').innerHTML=defs('a')+cols()+`
  ${acct(X.F,60,64,'F','Disbursal account','Receives funds, pays loans')}
  ${acct(X.F,200,64,'F','Collection account','Receives CMG repayments')}
  ${acct(X.F,326,64,'F','Own account','The FI’s income')}
- ${acct(X.C,60,230,'C','Group bank account',['Receives the loan,','repays from it'])}
+ ${acct(X.C,60,230,'C','Group bank account',['Receives the loan; the CMG','may withdraw it in cash'])}
+ <text class="sm" x="${X.C+14}" y="262">Repay through a Wakala?</text><text class="sm" x="${X.C+14}" y="278">To confirm (see Notes)</text>
  ${arr(R+2,FL-2,92,'k',1,'Fund the FI')}
  ${arr(FR+2,CL-2,92,'k',2,'Lend',['max 2 loans per CMG;','2nd only if 1st repaid'])}
- ${arr(CL-2,FR+4,232,'k',3,'Repay','principal + interest')}
+ ${arr(CL-2,FR+4,232,'k',3,'Repay',['principal + interest; cash','at the FI’s bank, with an','FI reference number'])}
  ${arr(FL-2,R+4,232,'k',4,'Pay back','principal + interest')}
  ${arr(R+2,FL-2,358,'P','','FI’s interest share',['majority, paid at','regular intervals'])}
  ${line('M80 198V128','P',1)}
@@ -253,7 +256,9 @@ const GLOSS=[
  ['Days past due','How many days a payment is late'],
  ['Write-down','Reducing a loan’s value in the FI’s books when it is unlikely to be repaid'],
  ['Loss share','The agreed split of an unrecovered loss between the FI and PMO-RALG'],
- ['CMG app','The app CMGs use to manage their group and loan records']];
+ ['CMG app','The app CMGs use to manage their group and loan records'],
+ ['Reference number','A number the FI issues so a cash repayment is matched to the right CMG loan'],
+ ['Wakala','An agent who takes cash deposits and payments for a bank or mobile money service']];
 document.getElementById('gloss').innerHTML=GLOSS.map(([t,d])=>`<dt>${t}</dt><dd>${d}</dd>`).join('');
 const dlg=document.getElementById('notes');
 document.getElementById('openNotes').onclick=()=>dlg.showModal();
