@@ -69,6 +69,7 @@
   .chip rect{fill:var(--card);stroke-width:1.5;stroke-dasharray:5 3}
   .chip.R rect{stroke:var(--red)} .chip.R text{fill:var(--red)}
   .chip.k rect{stroke:var(--ink2)} .chip.k text{fill:var(--ink2)}
+  .chip.M rect{stroke:var(--m)} .chip.M text{fill:var(--m)}
   .chip text{font-size:12.5px;font-weight:700}
   .chip:hover rect{fill:color-mix(in srgb,var(--ink2) 8%,var(--card))}
   /* notes */
@@ -102,7 +103,6 @@
     <h2>1 · Money goes round</h2>
     <p class="lead">PMO-RALG funds the FI. The FI lends to CMGs. CMGs repay the FI, the FI pays PMO-RALG back, and PMO-RALG lends the money out again.</p>
     <div class="scroll"><svg id="s1" viewBox="0 0 1000 450" role="img" aria-label="Flow 1: money goes round"></svg></div>
-    <div class="jumps"><button class="jump j2" data-go="2">CMG doesn’t repay? See flow 2 →</button><button class="jump j3" data-go="3">Rewards: see flow 3 →</button></div>
   </section>
 
   <section class="flow" id="f2" role="tabpanel" aria-labelledby="tab2" hidden>
@@ -184,8 +184,10 @@ document.getElementById('s1').innerHTML=defs('a')+cols()+`
  <text class="sm" x="${X.C+14}" y="262">Repay through a Wakala?</text><text class="sm" x="${X.C+14}" y="278">To confirm (see Notes)</text>
  ${arr(R+2,FL-2,92,'k',1,'Fund the FI')}
  ${arr(FR+2,CL-2,92,'k',2,'Lend',['max 2 loans per CMG;','2nd only if 1st repaid'])}
- ${arr(CL-2,FR+4,232,'k',3,'Repay',['principal + interest; cash','at the FI’s bank, with an','FI reference number'])}
- ${arr(FL-2,R+4,232,'k',4,'Pay back','principal + interest')}
+ ${arr(CL-2,FR+4,232,'k',3,'CMG Repays',['principal + interest; cash','at the FI’s bank, with an','FI reference number'])}
+ ${arr(FL-2,R+4,232,'k',4,'FI Repays','principal + interest')}
+ ${chip(R+18,262,124,'M',3,'★ Reward → 3')}
+ ${chip(FR+18,304,124,'M',3,'★ Reward → 3')}
  ${arr(R+2,FL-2,358,'P','','FI’s interest share',['majority, paid at','regular intervals'])}
  ${line('M80 198V128','P',1)}
  ${num(104,163,5)}
@@ -206,7 +208,7 @@ document.getElementById('s2').innerHTML=defs('b')+cols()+`
  ${arr(CL-2,FR+4,92,'R',1,'Recovery',['FI’s own rules,','no coercion'])}
  ${line(`M${FL-2} 92H${R+4}`,'k',1)}
  <text class="sm" x="${(R+FL)/2}" y="82" text-anchor="middle">recovered money</text>
- ${chip(X.P,78,BW,'k',1,'Paid back: Flow 1, step 4')}
+ ${chip(X.P,78,BW,'k',1,'FI Repays: Flow 1, step 4')}
  ${line('M500 126V212','R',1)}
  ${num(500,169,2,'R')}
  <text class="lab R" x="520" y="160">Still unpaid at the agreed</text><text class="lab R" x="520" y="178">days past due</text>
