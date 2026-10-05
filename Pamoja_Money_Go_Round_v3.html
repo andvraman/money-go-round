@@ -103,6 +103,7 @@
     <h2>1 · Money goes round</h2>
     <p class="lead">PMO-RALG funds the FI. The FI lends to CMGs. CMGs repay the FI, the FI pays PMO-RALG back, and PMO-RALG lends the money out again.</p>
     <div class="scroll"><svg id="s1" viewBox="0 0 1000 450" role="img" aria-label="Flow 1: money goes round"></svg></div>
+    <div class="jumps"><button class="jump j2" data-go="2">CMG fails to repay? See flow 2 →</button><button class="jump j3" data-go="3">Rewards: see flow 3 →</button></div>
   </section>
 
   <section class="flow" id="f2" role="tabpanel" aria-labelledby="tab2" hidden>
@@ -186,8 +187,6 @@ document.getElementById('s1').innerHTML=defs('a')+cols()+`
  ${arr(FR+2,CL-2,92,'k',2,'Lend',['max 2 loans per CMG;','2nd only if 1st repaid'])}
  ${arr(CL-2,FR+4,232,'k',3,'CMG Repays',['principal + interest; cash','at the FI’s bank, with an','FI reference number'])}
  ${arr(FL-2,R+4,232,'k',4,'FI Repays','principal + interest')}
- ${chip(R+18,262,124,'M',3,'★ Reward → 3')}
- ${chip(FR+18,304,124,'M',3,'★ Reward → 3')}
  ${arr(R+2,FL-2,358,'P','','FI’s interest share',['majority, paid at','regular intervals'])}
  ${line('M80 198V128','P',1)}
  ${num(104,163,5)}
