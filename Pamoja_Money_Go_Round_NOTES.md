@@ -1,6 +1,8 @@
 # Pamoja Money-Go-Round — working notes
 
-- **Current version:** `Pamoja_Money_Go_Round_v3.html` (draft, 5 Oct 2026) · published at https://claude.ai/artifact/Kq183eTsVtFigqWZH89jRi
+- **Current version:** `Pamoja_Money_Go_Round_v3.html` (draft, 5 Oct 2026)
+- **Public link (GitHub Pages, from `main`):** https://andvraman.github.io/money-go-round/ (`index.html` opens the chart; `#flow2` / `#flow3` open those flows)
+- **Private working copy (Claude artifact):** https://claude.ai/artifact/Kq183eTsVtFigqWZH89jRi
 - **Earlier versions:** `archive/` (v1, v2)
 - **Project:** PAMOJA Sub-Component 1.2 — capital for Community Microfinance Groups (CMGs) through FIs
 - **Built from:** the "Funds Flow Process" note (5 Oct 2026) and the look of `CMG_Financing_Lifecycle_v9.html` in the `Pamoja-loan-flowchart` repo.
