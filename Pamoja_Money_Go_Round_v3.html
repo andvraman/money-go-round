@@ -108,7 +108,7 @@
 
   <section class="flow" id="f2" role="tabpanel" aria-labelledby="tab2" hidden>
     <h2>2 · When a CMG fails to repay</h2>
-    <p class="lead">The FI tries to recover. If the loan is still unpaid or only partially repaid at the agreed days past due, the FI writes it down and stops recovery. PMO-RALG then pays its share of the loss.</p>
+    <p class="lead">The FI tries to recover. If the loan is still unpaid or only partially repaid at the agreed days past due, the FI writes it off and stops recovery. PMO-RALG then pays its share of the loss.</p>
     <div class="scroll"><svg id="s2" viewBox="0 0 1000 450" role="img" aria-label="Flow 2: when a CMG does not repay"></svg></div>
     <div class="jumps"><button class="jump" data-go="1">← Back to flow 1</button><button class="jump j3" data-go="3">Rewards: see flow 3 →</button></div>
   </section>
@@ -130,7 +130,7 @@
     <li>CMGs may withdraw loan funds in cash, and may repay in cash into the FI’s collection account at its bank, quoting an FI-issued reference number.</li>
     <li>The FI pays back principal and interest into PMO-RALG’s collection account. PMO-RALG returns the FI’s majority share of the interest at regular intervals.</li>
     <li>The FI gets fresh capital only when PMO-RALG recycles funds to it.</li>
-    <li>After a write-down the FI may not pursue recovery. The agreement can set penalties or suspension for confirmed cases.</li>
+    <li>After a write-off the FI may not pursue recovery. The agreement can set penalties or suspension for confirmed cases.</li>
   </ul>
   <h4>Alternative for flow 1, step 4</h4>
   <ul><li>Each quarter (or another agreed period), the FI pays only the principal and PMO-RALG’s share of the interest, and keeps its own share.</li></ul>
@@ -138,7 +138,7 @@
   <ul>
     <li>The interest split, and how often the FI pays back.</li>
     <li>Rules for choosing which FI gets recycled funds.</li>
-    <li>Definition of default; the days-past-due threshold; how often write-downs are booked.</li>
+    <li>Definition of default; the days-past-due threshold; how often write-offs are booked.</li>
     <li>Loss split (FI 70 : PMO-RALG 30 proposed).</li>
     <li>Which accounts pay and receive loss share and rewards (shown here as PMO-RALG’s disbursal account or grant pool, and the FI’s own account).</li>
     <li>What earns a reward, how much, and the size of the grant pool.</li>
@@ -201,7 +201,7 @@ document.getElementById('s1').innerHTML=defs('a')+cols()+`
 document.getElementById('s2').innerHTML=defs('b')+cols()+`
  ${acct(X.C,60,80,'C','Group bank account','Repayments are overdue')}
  ${acct(X.F,60,64,'F','Collection account','Receives recovered money')}
- ${acct(X.F,214,64,'books','Write-down',['In the FI’s books; no money','moves. Recovery stops.'])}
+ ${acct(X.F,214,64,'books','Write-off',['In the FI’s books; no money','moves. Recovery stops.'])}
  ${acct(X.F,326,64,'F','Own account','Receives the loss share')}
  ${acct(X.P,326,64,'P','Disbursal account','Pays the loss share')}
  ${arr(CL-2,FR+4,92,'R',1,'Recovery',['FI’s own rules,','no coercion'])}
@@ -257,7 +257,7 @@ const GLOSS=[
  ['Recycle','Lending returned money out again'],
  ['Recovery','The FI’s steps to collect an overdue loan'],
  ['Days past due','How many days a payment is late'],
- ['Write-down','Reducing a loan’s value in the FI’s books when it is unlikely to be repaid'],
+ ['Write-off','Removing an unrecoverable loan from the FI’s books as a loss'],
  ['Loss share','The agreed split of an unrecovered loss between the FI and PMO-RALG'],
  ['CMG app','The app CMGs use to manage their group and loan records'],
  ['Reference number','A number the FI issues so a cash repayment is matched to the right CMG loan'],

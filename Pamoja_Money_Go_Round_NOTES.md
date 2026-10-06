@@ -12,7 +12,7 @@
 v2 was too detailed for the client. v3 splits it into three tabbed flows with clickable jumps between them. Arrows run account to account. Each flow has three party columns (PMO-RALG · FI · CMG).
 
 - **Flow 1 · Money goes round:** PMO-RALG disbursal account → FI disbursal account (1 Fund) → CMG group bank account (2 Lend; max 2 loans, 2nd only if 1st repaid) → FI collection account (3 CMG Repays) → PMO-RALG collection account (4 FI Repays) → ↻ 5 Recycle to the PMO-RALG disbursal account, then to the same or another FI. FI's interest share: PMO-RALG collection account → FI own account. Jumps: "Not repaid? → Flow 2" under the CMG, plus jump buttons under the flow to flows 2 and 3 (reward chips on steps 3 and 4 tried and removed, review comments). CMGs may withdraw in cash and repay in cash into the FI's collection account at its bank, with an FI reference number (review comment, 5 Oct 2026).
-- **Flow 2 · When a CMG fails to repay:** 1 Recovery (CMG → FI collection account; recovered money jumps to Flow 1 step 4) → 2 Write-down in the FI's books at agreed days past due (recovery stops) → 3 Loss share (PMO-RALG disbursal account → FI own account), claimed at an agreed periodicity.
+- **Flow 2 · When a CMG fails to repay:** 1 Recovery (CMG → FI collection account; recovered money jumps to Flow 1 step 4) → 2 Write-off in the FI's books at agreed days past due (recovery stops) → 3 Loss share (PMO-RALG disbursal account → FI own account), claimed at an agreed periodicity.
 - **Flow 3 · Rewards:** PMO-RALG grant pool → FI own account (share of disbursements made within agreed turnaround times, timely repayments, accurate reporting, fair recovery practices — review comment) and → CMG group bank account (on-time repayment + using the CMG app). First 2 years or until the pool runs out.
 - Details, still-to-settle points and the glossary sit behind one "Notes and glossary" button.
 - New in v3: an FI "own account" (income: interest share, loss share, rewards). Which accounts pay and receive loss share and rewards is still to confirm.
@@ -44,6 +44,10 @@ Three lanes (PMO-RALG · FIs · CMGs). Each card sits in the lane of the party t
 - "If not repaid" is called **Recovery**.
 - Maximum two loan cycles per CMG.
 
+## Decisions (6 Oct 2026)
+
+- "Write-down" renamed **Write-off** throughout the chart.
+
 ## Decisions (v2, Anand, 5 Oct 2026)
 
 - FI gets back its agreed (majority) interest share at regular intervals; fresh capital only through recycling. Alternative kept in the side panel of step 4.
@@ -60,7 +64,7 @@ Three lanes (PMO-RALG · FIs · CMGs). Each card sits in the lane of the party t
 - Rules for choosing where recycled funds go.
 - Definition of default.
 - What earns an incentive, and how much; the size of the grant pool.
-- Days-past-due threshold; write-down periodicity.
+- Days-past-due threshold; write-off periodicity.
 - Loss split (FI 70 : PMO-RALG 30 proposed).
 - Which accounts pay and receive loss share and rewards.
 - Cash repayments via Wakala: allowed? who bears fees? can the Wakala record the FI account and reference number?
@@ -80,7 +84,7 @@ Three lanes (PMO-RALG · FIs · CMGs). Each card sits in the lane of the party t
 | Recycle | Lending returned money out again |
 | Recovery | The FI's steps to collect an overdue loan |
 | DPD | Days past due: how many days a payment is late |
-| Write-down | Reducing a loan's value in the FI's books |
+| Write-off | Removing an unrecoverable loan from the FI's books as a loss (called "write-down" before 6 Oct 2026) |
 | Periodicity | How often something is done |
 | Loss share | The agreed split of an unrecovered loss |
 | Interest share | Agreed split of interest between the FI (majority) and PMO-RALG |
